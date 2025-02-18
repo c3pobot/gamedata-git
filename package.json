@@ -1,13 +1,13 @@
 {
-  "name": "gamedata-s3",
+  "name": "gamedata-git",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "update": "./updategitdependency.sh",
-    "build": "./buildtestimage.sh c3pobot/gamedata-s3",
-    "prod": "./buildprodimage.sh c3pobot/gamedata-s3"
+    "build": "./buildtestimage.sh c3pobot/gamedata-git",
+    "prod": "./buildprodimage.sh c3pobot/gamedata-git"
   },
   "author": "",
   "license": "ISC",
