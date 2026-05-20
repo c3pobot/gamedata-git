@@ -4,7 +4,8 @@ const CLIENT_URL = process.env.CLIENT_URL
 const fetch = require('./fetch')
 module.exports.getGameData = async(version, segment = 0)=>{
   try{
-    return await fetch(path.join(CLIENT_URL, 'data'), 'POST', { version: version,  includePveUnits: true,  requestSegment: segment})
+    //return await fetch(path.join(CLIENT_URL, 'data'), 'POST', { version: version,  includePveUnits: true,  requestSegment: segment})
+    return await fetch(path.join(CLIENT_URL, 'data'), 'POST', { version: version,  includePveUnits: true,  items: '-1'})
   }catch(e){
     throw(e)
   }

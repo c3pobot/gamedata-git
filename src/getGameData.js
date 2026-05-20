@@ -54,6 +54,7 @@ module.exports = async(version, gitVersions = {})=>{
   let enumSave = await saveFile('enums', {version: version, data: enums})
   if(!enumSave) throw('Error saving enums...')
   let segments = enums['GameDataSegment']
+  /*
   for(let i in segments){
     if(segments[i] > 0){
       count++;
@@ -61,6 +62,12 @@ module.exports = async(version, gitVersions = {})=>{
       if(status) saveSuccess++;
     }
   }
-  log.info(`Retrieved ${saveSuccess}/${count} gameData segments...`)
-  if(count > 0 && count === saveSuccess) return true
+  */
+  let status = await getGameDataSegment(version, 0, gitVersions)
+  if(status){
+    log.info(`Retrieved 1/1 gameData segments...`)
+    return true
+  }
+  //log.info(`Retrieved ${saveSuccess}/${count} gameData segments...`)
+  //if(count > 0 && count === saveSuccess) return true
 }

@@ -34,7 +34,7 @@ module.exports = async(versions = {}, meta = {})=>{
     }
     let gitVersions = await readFile('allVersions')
     if(!gitVersions) gitVersions = {}
-    console.log(gitVersions.gameVersion === meta.latestGamedataVersion && gitVersions.localeVersion === meta.latestLocalizationBundleVersion && gitVersions.assetVersion === meta.assetVersion)
+    
     if(gitVersions.gameVersion === meta.latestGamedataVersion && gitVersions.localeVersion === meta.latestLocalizationBundleVersion && gitVersions.assetVersion === meta.assetVersion){
       status = await gitPush(meta.latestGamedataVersion)
       if(status){

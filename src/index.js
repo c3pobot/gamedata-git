@@ -17,19 +17,29 @@ const getInitalFiles = async()=>{
   try{
     let status = true
     if(fs.existsSync(`${DATA_DIR}/.git`)){
+      log.info(`${DATA_DIR}/.git exists. Trying git pull...`)
       status = await gitClient.config({ dir: DATA_DIR, user: GIT_USER, email: GIT_EMAIL })
       if(status) status = await gitClient.pull(DATA_DIR)
+
     }
     if(!status){
-      fs.rmSync(DATA_DIR, { recursive: true, force: true })
+      log.info(`Error with git pull deleting ${DATA_DIR}...`)
+      await fs.rmSync(DATA_DIR, { recursive: true, force: true })
+      await fs.mkdirSync(DATA_DIR, { recursive: true })
+      setTimeout(getInitalFiles, 5000)
+      return
+    }
+    if(!status){
+      log.info(`Trying git clone...`)
       status = await gitClient.clone({ repo: GIT_REPO, dir: DATA_DIR, user: GIT_USER, token: GIT_TOKEN })
       if(status) status = await gitClient.config({ dir: DATA_DIR, user: GIT_USER, email: GIT_EMAIL })
     }
     if(status){
       log.info(`git pull successfull...`)
       checkAPIReady()
+      return
     }
-
+    setTimeout(getInitalFiles, 5000)
   }catch(e){
     log.error(e)
     setTimeout(getInitalFiles, 5000)
