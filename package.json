@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "update": "./updategitdependency.sh",
     "build": "./buildtestimage.sh c3pobot/gamedata-git",
     "prod": "./buildprodimage.sh c3pobot/gamedata-git"
   },
@@ -18,8 +18,6 @@
   },
   "dependencies": {
     "jszip": "^3.10.1",
-    "logger": "github:c3pobot/logger",
-    "node-fetch": "^2.6.7",
     "shelljs": "^0.8.5"
   }
 }
