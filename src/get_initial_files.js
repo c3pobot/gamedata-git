@@ -7,7 +7,6 @@ const GIT_DIR = `${DATA_DIR}/git/files`
 
 export default async function(){
   try{
-    return true
     let status = false
     if(fs.existsSync(`${GIT_DIR}/.git`)){
       log.info(`${GIT_DIR}/.git exists. Trying git pull...`)
