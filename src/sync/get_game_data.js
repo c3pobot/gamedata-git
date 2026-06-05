@@ -21,7 +21,7 @@ async function saveUnits( data = [], version, gitVersions = {} ){
   let gasUnits = getGasUnits(data.filter(x=>x.obtainable === true && x.obtainableTime === "0")), gasUnitsSave
   if(gasUnits?.length > 0) gasUnitsSave = file.save('units_gas.json', { version, data: gasUnits })
   if(gasUnitsSave){
-    gitVersions['units_gas'] = version
+    gitVersions['units_gas.json'] = version
     saveSuccess++
   }
   if(saveSuccess === 3) return true
