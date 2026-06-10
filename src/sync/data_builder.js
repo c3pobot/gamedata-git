@@ -14,7 +14,6 @@ export default async function( version, gitVersions = {} ){
     return true
   }
   let data = await getDataFiles(version)
-  console.log(Object.values(data)?.length)
   if(!data) return
 
   gameData.data = buildData(data)

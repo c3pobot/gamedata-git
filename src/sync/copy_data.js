@@ -25,8 +25,7 @@ export default async function(gitVersions = {}){
       }
       count++
       let newFileName = f
-      if(newFileName?.endsWith('.json')) newFileName += '.br'
-      if(newFileName?.endsWith('.md')) newFileName = 'index.html'
+      if(!newFileName?.endsWith('.br')) newFileName += '.br'
       let status = await file.save(newFileName, data, 'gd')
       if(!status) return
     }

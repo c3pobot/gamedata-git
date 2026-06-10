@@ -24,7 +24,7 @@ export default async function( meta = {} ){
       }
     }
 
-    status = await file.save('meta.json', { version: meta.latestGamedataVersion, data: meta }, false)
+    status = await file.save('meta.json', { version: meta.latestGamedataVersion, data: meta })
     if(status){
       gitVersions['meta.json'] = meta.latestGamedataVersion
       status = await getGameData(meta.latestGamedataVersion, gitVersions)
