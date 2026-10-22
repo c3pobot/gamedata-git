@@ -278,7 +278,7 @@ function buildUnitData(unitsList, skillList, statTables) {
   const skills = parseSkills(skillList);
   const baseList = [];
   const unitGMTables = {};
-
+  const unit_set = new Set();
   let i = unitsList.length;
   while (i--) {
     const unit = unitsList[i];
@@ -287,8 +287,9 @@ function buildUnitData(unitsList, skillList, statTables) {
       unitGMTables[ unit.baseId ] = unitGMTables[ unit.baseId ] || {}; // ensure unit's table exists
       unitGMTables[ unit.baseId ][ unit.rarity ] = statTables[ unit.statProgressionId ];
 
-      if (unit.rarity === 7) {
+      if(!unit_set.has(unit.baseId)){
         baseList.push(unit);
+        unit_set.add(unit.baseId);
       }
     }
   }
