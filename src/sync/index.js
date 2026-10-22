@@ -10,6 +10,7 @@ async function sync(){
     if(meta?.latestGamedataVersion && (versions.gameVersion !== meta.latestGamedataVersion || versions.localeVersion !== meta.latestLocalizationBundleVersion || versions.assetVersion !== meta?.assetVersion)){
       await updateData(meta)
     }
+    //await updateData(meta)
     setTimeout(sync, SYNC_INTERVAL * 10 * 1000)
   }catch(e){
     log.error(e)

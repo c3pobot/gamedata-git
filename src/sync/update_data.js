@@ -14,7 +14,9 @@ export default async function( meta = {} ){
     if(!status) return log.error(`Error with git pull`)
 
     let gitVersions = await file.read('allVersions.json')
+    //let gitVersions
     if(!gitVersions) gitVersions = {}
+    
     if(gitVersions.gameVersion === meta.latestGamedataVersion && gitVersions.localeVersion === meta.latestLocalizationBundleVersion && gitVersions.assetVersion === meta.assetVersion){
       status = await gitClient.push(meta.latestGamedataVersion)
       if(status) status = await copyData(gitVersions)

@@ -1,9 +1,11 @@
 import log from '../logger.js'
 import file from './file.js'
 import swgohClient from '../swgoh_client.js'
-import getGasUnits from './get_gas_units.js'
+import gasFiles from './gas/index.js'
 
 const compressedSet = new Set([ 'units', 'campain', 'effect' ])
+
+
 
 async function saveUnits( data = [], version, gitVersions = {} ){
   if(data.length === 0) return
@@ -33,9 +35,9 @@ async function getGameData( version, gitVersions = {} ){
   for(let i in data){
     if(!data[i] || data[i]?.length === 0) continue;
     count++;
-    if(i === 'units'){
-      let units = await saveUnits(data[i], version, gitVersions)
-      if(units === true) saveSuccess++
+    if(gasFiles[i]){
+      let gasStatus = await gasFiles[i](data[i], version, gitVersions)
+      if(gasStatus === true) saveSuccess++
     }else{
       let fileName = `${i}.json`
       if(compressedSet.has(i)) fileName += '.br'

@@ -287,7 +287,7 @@ function buildUnitData(unitsList, skillList, statTables) {
       unitGMTables[ unit.baseId ] = unitGMTables[ unit.baseId ] || {}; // ensure unit's table exists
       unitGMTables[ unit.baseId ][ unit.rarity ] = statTables[ unit.statProgressionId ];
 
-      if (unit.rarity === 1) {
+      if (unit.rarity === 7) {
         baseList.push(unit);
       }
     }

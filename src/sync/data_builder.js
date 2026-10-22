@@ -8,11 +8,12 @@ export default async function( version, gitVersions = {} ){
   log.info('creating gameData.json for version '+version)
   let gameData = await file.read('gameData.json')
   if(!gameData) gameData = {}
-
+  
   if(gameData?.version === version && gameData?.data){
     gitVersions['gameData.json'] = version
     return true
   }
+  
   let data = await getDataFiles(version)
   if(!data) return
 
